@@ -1,0 +1,45 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Axiforma-Black.ttf",
+      "sha1": "59cd5ab5ad3ef3f3eab3ceeb28bfff37ca904a3a"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Bold.ttf",
+      "sha1": "5e1b228414e2eea9b3760e42e41a1e5093dbcee0"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Book.ttf",
+      "sha1": "64e2a576b37d2b8d9345ba740b52d094ec354859"
+    },
+    {
+      "path": "assets/fonts/Axiforma-ExtraBold.ttf",
+      "sha1": "0e14730178e530a11754d396167f8660506fe6ab"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Heavy.ttf",
+      "sha1": "8a81780c42cfb781fb01f5e501e8806e245c4aa0"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Light.ttf",
+      "sha1": "56fabab987cd9369a99e438c4dd51129baf2ad43"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Medium.ttf",
+      "sha1": "99f123acaa76e20aaba5c97973533f79e3627366"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Regular.ttf",
+      "sha1": "ef9e9d1826b0c9b4f21a4ce7db8fff01b78d5bdc"
+    },
+    {
+      "path": "assets/fonts/Axiforma-SemiBold.ttf",
+      "sha1": "c7acdf6d925efeca4c64bf0e6d00e539a2554d63"
+    },
+    {
+      "path": "assets/fonts/Axiforma-Thin.ttf",
+      "sha1": "acadf2cba9295fb8332fa72171c7ece33556fae5"
+    }
+  ]
+}
