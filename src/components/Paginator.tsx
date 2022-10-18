@@ -29,6 +29,7 @@ const Paginator = ({data, scrollX}: Props) => {
 
         return (
           <Animated.View
+          key={i}
             style={[
               styles.dot,
               {width: dotWidth, backgroundColor}

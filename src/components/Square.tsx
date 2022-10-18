@@ -13,7 +13,7 @@ const Square = ({scrollX}) => {
 
   const backgroundColor = scrollX.interpolate({
     inputRange,
-    outputRange: ['#00B897', '#7A91FD', '#F77465'],
+    outputRange: ['#00B897', '#00B897', '#00B897'],
     extrapolate: 'clamp',
   });
 
