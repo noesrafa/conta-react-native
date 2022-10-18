@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { StyleSheet, Text, View, Dimensions, Animated } from 'react-native'
 import React from 'react'
 // === Dimensions ===
@@ -6,10 +7,6 @@ const {width, height} = Dimensions.get('screen');
 const Square = ({scrollX}) => {
 
   const inputRange = [(1 - 1) * width, 1 * width, (1 + 1) * width];
-  const YOLO = Animated.modulo(
-    Animated.divide(Animated.modulo(scrollX, width), new Animated.Value(width)),
-    1,
-  );
 
   const backgroundColor = scrollX.interpolate({
     inputRange,
