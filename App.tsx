@@ -8,8 +8,8 @@ import {
 import React,{useState, useEffect} from 'react';
 import Onboarding from './src/screens/Onboarding';
 import Square from './src/components/Square';
-import SplashScreen from 'react-native-splash-screen'
 
+import SplashScreen from 'react-native-splash-screen'
 
 export default function App () {
   useEffect(() => {
