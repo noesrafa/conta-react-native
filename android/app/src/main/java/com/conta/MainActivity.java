@@ -33,11 +33,7 @@ public class MainActivity extends ReactActivity {
    * (Paper).
    */
 
-  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);  // here
-        super.onCreate(savedInstanceState);
-    }
+  
 
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
