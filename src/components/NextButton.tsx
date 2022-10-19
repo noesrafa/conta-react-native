@@ -5,7 +5,8 @@ import {ArrowRightIcon} from '../Icons';
  const {width, height} = Dimensions.get('screen');
 
 interface Props {
-    scrollTo: () => void;
+    scrollTo?: () => void;
+    onPress?: () => void;
 }
 
 const NextButton = ({scrollTo}:Props) => {

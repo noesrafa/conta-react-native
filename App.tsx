@@ -6,10 +6,10 @@ import {
   StatusBar
 } from 'react-native';
 import React,{useState, useEffect} from 'react';
-import Onboarding from './src/screens/Onboarding';
-import Square from './src/components/Square';
 
 import SplashScreen from 'react-native-splash-screen'
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './src/navigator/StackNavigator';
 
 export default function App () {
   useEffect(() => {
@@ -18,11 +18,12 @@ export default function App () {
   
   
   return (
+      <NavigationContainer>
     <View style={styles.container}>
       <StatusBar translucent backgroundColor={'transparent'} />
-      {/* <Square /> */}
-      <Onboarding />
+        <StackNavigator />
     </View>
+      </NavigationContainer>
   )
 }
 

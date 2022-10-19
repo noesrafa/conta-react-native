@@ -14,11 +14,14 @@ import OnboardingItem from '../components/OnboardingItem';
 import Paginator from '../components/Paginator';
 import NextButton from '../components/NextButton';
 import Square from '../components/Square';
+import { StackScreenProps } from '@react-navigation/stack';
+
+interface Props extends StackScreenProps<any, any>{}
 
 // === Dimensions ===
 const {width, height} = Dimensions.get('screen');
 
-export default function Onboarding() {
+export default function Onboarding({navigation}:Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -33,7 +36,8 @@ export default function Onboarding() {
     if (currentIndex < data.length - 1) {
         slidesRef.current.scrollToIndex({ index: currentIndex + 1})
     } else {
-        console.log('last');
+        // console.log('last');
+        navigation.navigate("SetName")
     }
   }
 
