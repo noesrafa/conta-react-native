@@ -66,7 +66,7 @@ export default function Onboarding({navigation}:Props) {
           ref={slidesRef}
         />
       </View>
-      <NextButton scrollTo={scrollTo}/>
+      <NextButton scrollTo={scrollTo} enabled/>
       <Paginator data={data} scrollX={scrollX}/>
     </View>
   );

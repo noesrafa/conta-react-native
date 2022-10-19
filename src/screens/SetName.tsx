@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   StyleSheet,
   Text,
@@ -5,18 +6,21 @@ import {
   TextInput,
   Dimensions,
   Keyboard,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import globalStyles from '../theme/appTheme';
 import {LogoIcon} from '../Icons';
 import NextButton from '../components/NextButton';
-import {colors} from '../theme/appTheme';
+import {COLORS} from '../theme/appTheme';
+// ===== LocalStorage =====
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // === Dimensions ===
 const {width, height} = Dimensions.get('screen');
 
-const SetName = () => {
-  const [name, setName] = useState('')
+const SetName = ({navigation}) => {
+  const [name, setName] = useState('');
   const [keyboardShow, setKeyboardShow] = useState(false);
 
   React.useEffect(() => {
@@ -39,10 +43,24 @@ const SetName = () => {
     };
   }, []);
 
-  
+  const scrollTo = () => {
+    if (nameValidation()) {
+      //Async storage
+      const saveName = async () => {
+        await AsyncStorage.setItem('userName', name);
+      };
+      saveName();
+      navigation.navigate('HomeScreen');
+    }
+  };
+
+  const nameValidation = (): boolean => {
+    return name !== '';
+  };
 
   return (
     <View style={globalStyles.container}>
+      <StatusBar barStyle={'dark-content'} />
       <View style={globalStyles.logo}>
         <LogoIcon color1="#00B897" color2="#000" />
       </View>
@@ -54,12 +72,12 @@ const SetName = () => {
         <TextInput
           style={styles.textInput}
           placeholder="Nombre"
-          onChangeText={(value) => setName(value)}
+          onChangeText={value => setName(value)}
         />
       </View>
       {!keyboardShow && (
         <View style={styles.button}>
-          <NextButton />
+          <NextButton enabled={nameValidation()} scrollTo={scrollTo} />
         </View>
       )}
     </View>
@@ -77,7 +95,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: width * 0.8,
-    borderBottomColor: colors.gray100,
+    borderBottomColor: COLORS.gray100,
     borderBottomWidth: 3,
     textAlign: 'center',
     padding: 20,
