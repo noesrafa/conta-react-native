@@ -36,7 +36,9 @@ const globalStyles = StyleSheet.create({
 });
 
 export const COLORS = {
-    gray100: "#EAEAEA",
+    grayLine: "#EAEAEA",
+    gray100: "#F6F6FA",
+    gray300: "#84849A",
     principal: "#00B897"
 }
 

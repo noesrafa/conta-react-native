@@ -7,15 +7,22 @@ import globalStyles, {COLORS} from '../theme/appTheme';
 import {TextInput} from 'react-native-gesture-handler';
 import {SearchIcon} from '../Icons';
 import FirstSteps from '../components/HomeScreen/FirstSteps';
+import PopularCard from '../components/HomeScreen/PopularCard';
+
+
+
 
 const HomeScreen = ({navigation}: any) => {
   const [name, setName] = React.useState('');
   const [searchInput, setSearchInput] = React.useState('');
+  // Animations
   const [reveal] = useState(new Animated.Value(30));
   const [reveal2] = useState(new Animated.Value(30));
   const [fontSize] = useState(new Animated.Value(0));
   const [fontSize2] = useState(new Animated.Value(0));
 
+  
+  
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -30,34 +37,27 @@ const HomeScreen = ({navigation}: any) => {
     getData();
 
     setTimeout(() => {
-      Animated.spring(
-        reveal, {
+      Animated.spring(reveal, {
         toValue: 0,
-        useNativeDriver: false
-      }).start()
+        useNativeDriver: false,
+      }).start();
       setTimeout(() => {
         // Animated.spring(
         //   fontSize2, {
         //   toValue: 0,
         //   useNativeDriver: false
         // }).start()
-        Animated.spring(
-          reveal2, {
+        Animated.spring(reveal2, {
           toValue: 0,
-          useNativeDriver: false
-        }).start()
-
-    }, 100)
-    }, 100)
+          useNativeDriver: false,
+        }).start();
+      }, 100);
+    }, 100);
     // Animated.spring(
     //   fontSize, {
     //   toValue: 34,
     //   useNativeDriver: false
     // }).start()
-    
-
-    
-    
   }, []);
 
   const triggerSearch = () => {
@@ -71,8 +71,12 @@ const HomeScreen = ({navigation}: any) => {
       <HomeHeader />
       <ScrollView style={styles.container}>
         <View style={styles.welcomeText}>
-          <Animated.Text style={[globalStyles.font_lg, {top: reveal}]}>Hola,</Animated.Text>
-          <Animated.Text style={[globalStyles.font_lg, {top: reveal2}]}>{name}</Animated.Text>
+          <Animated.Text style={[globalStyles.font_lg, {top: reveal}]}>
+            Hola,
+          </Animated.Text>
+          <Animated.Text style={[globalStyles.font_lg, {top: reveal2}]}>
+            {name}
+          </Animated.Text>
         </View>
         <View style={styles.inputContainer}>
           <SearchIcon />
@@ -84,12 +88,15 @@ const HomeScreen = ({navigation}: any) => {
             onChangeText={value => setSearchInput(value)}
           />
         </View>
-        <Animated.View >
+        <Animated.View>
           <FirstSteps navigation={navigation} />
         </Animated.View>
         <Text style={[globalStyles.font_md, styles.featuredText]}>
           Más populares
         </Text>
+        <View style={styles.popularList}>
+          <PopularCard/>
+        </View>
       </ScrollView>
     </View>
   );
@@ -109,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '90%',
-    borderBottomColor: COLORS.gray100,
+    borderBottomColor: COLORS.grayLine,
     borderBottomWidth: 2,
     paddingVertical: 10,
     alignSelf: 'center',
@@ -125,4 +132,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
+  popularList: {
+    marginTop: 30
+  }
 });
