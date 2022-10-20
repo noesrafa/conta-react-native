@@ -5,7 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Animated,
-  } from 'react-native';
+} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS} from '../../theme/appTheme';
 import {LogoGreenIcon} from '../../Icons';
@@ -15,9 +15,19 @@ const fixWidth = width * 0.9;
 
 const FirstSteps = ({navigation}) => {
   const animation = new Animated.Value(0);
+  const [opacity] = React.useState(new Animated.Value(1));
   const inputRange = [0, 0.5, 1];
   const outputRange = [1, 0.95, 1];
   const scale = animation.interpolate({inputRange, outputRange});
+
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     Animated.spring(opacity, {
+  //       toValue: 1,
+  //       useNativeDriver: true,
+  //     }).start();
+  //   }, 100);
+  // }, []);
 
   const onPressIn = () => {
     Animated.spring(animation, {
@@ -38,20 +48,22 @@ const FirstSteps = ({navigation}) => {
   };
 
   return (
-    <Animated.View style={{transform: [{scale}]}}>
-      <TouchableOpacity
-        style={styles.container}
-        activeOpacity={1}
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
-        onPress={onPress}>
-        <Text style={styles.title}>Primeros</Text>
-        <Text style={styles.title}>Pasos</Text>
-        <Text style={styles.subtitle}>¿Debó declarar impuestos?</Text>
-        <View style={styles.logo}>
-          <LogoGreenIcon />
-        </View>
-      </TouchableOpacity>
+    <Animated.View style={{transform: [{scale: opacity}]}}>
+      <Animated.View style={{transform: [{scale}]}}>
+        <TouchableOpacity
+          style={styles.container}
+          activeOpacity={1}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
+          onPress={onPress}>
+          <Text style={styles.title}>Primeros</Text>
+          <Text style={styles.title}>Pasos</Text>
+          <Text style={styles.subtitle}>¿Debó declarar impuestos?</Text>
+          <View style={styles.logo}>
+            <LogoGreenIcon />
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
     </Animated.View>
   );
 };

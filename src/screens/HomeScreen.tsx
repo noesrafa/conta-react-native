@@ -1,6 +1,6 @@
 /* eslint-disable */
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, ScrollView, Animated} from 'react-native';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeHeader from '../components/HomeHeader';
 import globalStyles, {COLORS} from '../theme/appTheme';
@@ -8,9 +8,14 @@ import {TextInput} from 'react-native-gesture-handler';
 import {SearchIcon} from '../Icons';
 import FirstSteps from '../components/HomeScreen/FirstSteps';
 
-const HomeScreen = ({navigation}:any) => {
+const HomeScreen = ({navigation}: any) => {
   const [name, setName] = React.useState('');
   const [searchInput, setSearchInput] = React.useState('');
+  const [reveal] = useState(new Animated.Value(30));
+  const [reveal2] = useState(new Animated.Value(30));
+  const [fontSize] = useState(new Animated.Value(0));
+  const [fontSize2] = useState(new Animated.Value(0));
+
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -23,21 +28,51 @@ const HomeScreen = ({navigation}:any) => {
       }
     };
     getData();
+
+    setTimeout(() => {
+      Animated.spring(
+        reveal, {
+        toValue: 0,
+        useNativeDriver: false
+      }).start()
+      setTimeout(() => {
+        // Animated.spring(
+        //   fontSize2, {
+        //   toValue: 0,
+        //   useNativeDriver: false
+        // }).start()
+        Animated.spring(
+          reveal2, {
+          toValue: 0,
+          useNativeDriver: false
+        }).start()
+
+    }, 100)
+    }, 100)
+    // Animated.spring(
+    //   fontSize, {
+    //   toValue: 34,
+    //   useNativeDriver: false
+    // }).start()
+    
+
+    
+    
   }, []);
 
   const triggerSearch = () => {
     if (searchInput !== '') {
-      navigation.navigate("SearchScreen")
+      navigation.navigate('SearchScreen');
     }
-  }
+  };
 
   return (
     <View style={globalStyles.flex}>
       <HomeHeader />
       <ScrollView style={styles.container}>
         <View style={styles.welcomeText}>
-          <Text style={globalStyles.font_lg}>Hola,</Text>
-          <Text style={globalStyles.font_lg}>{name}</Text>
+          <Animated.Text style={[globalStyles.font_lg, {top: reveal}]}>Hola,</Animated.Text>
+          <Animated.Text style={[globalStyles.font_lg, {top: reveal2}]}>{name}</Animated.Text>
         </View>
         <View style={styles.inputContainer}>
           <SearchIcon />
@@ -49,7 +84,9 @@ const HomeScreen = ({navigation}:any) => {
             onChangeText={value => setSearchInput(value)}
           />
         </View>
-        <FirstSteps navigation={navigation}/>
+        <Animated.View >
+          <FirstSteps navigation={navigation} />
+        </Animated.View>
         <Text style={[globalStyles.font_md, styles.featuredText]}>
           Más populares
         </Text>
@@ -85,7 +122,7 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   featuredText: {
-    alignSelf: "center",
-    marginTop: 30
-  }
+    alignSelf: 'center',
+    marginTop: 30,
+  },
 });
